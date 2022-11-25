@@ -7,14 +7,14 @@ public class ExAlunos {
 
 	public static void main(String[] args) {
 		
-		
 		try {
 			Scanner tc = new Scanner(System.in);
 			double rendimento = 0;
 			float valorDigitado=0, saldo=0,valorAporte=0,totalAporte=0,totalInvestido;
-			int opc=0,qntMeses=0, sair=0, escolhaAporte=0;
-			DecimalFormat arredonda = new DecimalFormat("#,##0.00");
-			while(opc==0) {
+			int opc=0,qntMeses=0, sair=0, escolhaAporte=0;  //Declarado as variaveis
+			
+			DecimalFormat arredonda = new DecimalFormat("#,##0.00");//metodo para formatação dos valores
+			while(opc==0) {				//While aqui serve para criar a opção de encerrar o algoritmo
 				System.out.println("\nDigite o valor");
 				saldo=tc.nextFloat();
 				totalInvestido=saldo;
@@ -24,21 +24,21 @@ public class ExAlunos {
 				escolhaAporte = tc.nextInt();
 				if(escolhaAporte==1) {
 					System.out.printf("Digite o valor do aporte");
-					valorAporte=tc.nextFloat();
+					valorAporte=tc.nextFloat();    //Caso o usuario escolha colocar um aporte todo mes, aqui sera solicitado o valor
 				}
-				for(int i=1;i<qntMeses+1;i++) {
+				for(int i=1;i<qntMeses+1;i++) {		//Dentro desse laço de repetição sera calculado, Saldo eTotal do aporte 
 					totalAporte+=valorAporte;
-					rendimento=(1.07*saldo)/100;
+					rendimento=(1.07*saldo)/100;   //Realiza o calculo da porcentagem
 					saldo+=valorAporte;
 					saldo+=rendimento;
-					System.out.printf("Saldo mes "+i +"\nR$"+arredonda.format(saldo)+"\n\n");
+					System.out.printf("Saldo mes "+i +"\nR$"+arredonda.format(saldo)+"\n\n"); //Exibe o valor ja formatado
 				}
 				totalInvestido+=totalAporte;
 				System.out.printf("Valor total final R$"+(arredonda.format(saldo)) + "\nValor total investido: R$ "+arredonda.format(totalInvestido)+"\n");
 				System.out.printf("Total de juros recebido R$"+arredonda.format(saldo-totalInvestido));
 				System.out.printf("\nDeseja SAIR? \n1-SIM \n2-NÃƒO\n");
 				sair=tc.nextInt();
-				if(sair==1) {
+				if(sair==1) {  			//Faz validação para ver se o algoritmo reinicia ou finaliza
 					opc=1;
 					System.out.println("ENCERRANDO...");
 				}
